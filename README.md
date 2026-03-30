@@ -5,40 +5,41 @@ This repository contains the RTL design and testbench for a standard D (Data) Fl
 
 Features
 
-Positive edge-triggered clocking
+     Positive edge-triggered clocking
 
-Synchronous active-high reset
+     Synchronous active-high reset
 
-Synthesizable RTL design
+     Synthesizable RTL design
 
-Truth TableClock (CLK)Reset (RST)Data (D)Output (Q)Output (Q_bar)Rising Edge1X01Rising Edge0001Rising Edge011
+Truth TableClock 
+    (CLK)Reset (RST)Data (D)Output (Q)Output (Q_bar)Rising Edge1X01Rising Edge0001Rising Edge011
 
 File Structure
 
-d_flip_flop.v - The main design source file containing the RTL module.
+    d_flip_flop.v - The main design source file containing the RTL module.
 
-tb_d_flip_flop.v - The simulation testbench file used to verify the functional logic.
+    tb_d_flip_flop.v - The simulation testbench file used to verify the functional logic.
 
-constraints.xdc - The Xilinx Design Constraints file for FPGA pin mapping (only required if programming a physical board).
+    constraints.xdc - The Xilinx Design Constraints file for FPGA pin mapping (only required if programming a physical board).
 
 Software Requirements
 
-Xilinx Vivado Design Suite
+    Xilinx Vivado Design Suite
 
-Standard text editor or Vivado built-in editor
+    Standard text editor or Vivado built-in editor
 
 Vivado Simulation Instructions
 
-Open Vivado and click Create Project.
+    Open Vivado and click Create Project.
 
-Select the appropriate FPGA part number or board if you intend to synthesize the design later.
+    Select the appropriate FPGA part number or board if you intend to synthesize the design later.
 
-Add d_flip_flop.v to your Design Sources.
+    Add d_flip_flop.v to your Design Sources.
 
-Add tb_d_flip_flop.v to your Simulation Sources.
+    Add tb_d_flip_flop.v to your Simulation Sources.
 
-Navigate to the left-hand Flow Navigator panel.
+    Navigate to the left-hand Flow Navigator panel.
 
-Click Run Simulation and select Run Behavioral Simulation.
+    Click Run Simulation and select Run Behavioral Simulation.
 
-Observe the generated waveform window to verify that the Q output updates to the value of D on the rising edge of the clock, and resets to 0 when RST is asserted.
+    Observe the generated waveform window to verify that the Q output updates to the value of D on the rising edge of the clock, and resets to 0 when RST is asserted.
