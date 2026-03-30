@@ -1,0 +1,23 @@
+`timescale 1ns / 1ps
+
+module d_flip_flop (
+    input wire clk,
+    input wire rst,
+    input wire d,
+    output reg q,
+    output wire q_bar
+);
+
+    // Complementary output
+    assign q_bar = ~q;
+
+    // Synchronous logic
+    always @(posedge clk) begin
+        if (rst) begin
+            q <= 1'b0; // Reset Q to 0 when RST is active high
+        end else begin
+            q <= d;    // Assign D to Q on the rising edge of the clock
+        end
+    end
+
+endmodule
