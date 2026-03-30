@@ -1,0 +1,60 @@
+`timescale 1ns / 1ps
+
+module tb_d_flip_flop;
+
+    // Inputs
+    reg clk;
+    reg rst;
+    reg d;
+
+    // Outputs
+    wire q;
+    wire q_bar;
+
+    // Instantiate the Unit Under Test (UUT)
+    d_flip_flop uut (
+        .clk(clk),
+        .rst(rst),
+        .d(d),
+        .q(q),
+        .q_bar(q_bar)
+    );
+
+    // Clock generation: 10ns period (100MHz)
+    always #5 clk = ~clk;
+
+    initial begin
+        // Initialize Inputs
+        clk = 0;
+        rst = 1; // Start with reset asserted
+        d = 0;
+
+        // Wait 20 ns to observe initial reset state
+        #20;
+        
+        // Release reset
+        rst = 0;
+        
+        // Test Case 1: Set D to 1
+        #10;
+        d = 1;
+        
+        // Test Case 2: Set D to 0
+        #20;
+        d = 0;
+
+        // Test Case 3: Set D to 1, then test the synchronous reset
+        #20;
+        d = 1;
+        #15;     // Wait a bit, then hit reset
+        rst = 1; 
+        #20;     // Hold reset for 2 clock cycles
+        rst = 0;
+        d = 0;
+
+        // Let simulation run for a few more cycles, then end
+        #40;
+        $finish;
+    end
+      
+endmodule
